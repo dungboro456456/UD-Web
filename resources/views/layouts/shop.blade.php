@@ -39,8 +39,23 @@
 					<a href="#"><span class="icon-tumblr"></span></a>
 				</div>
 				<a href="index.html"> <span class="icon-home"></span> Home</a> 
-				<a href="#"><span class="icon-user"></span> My Account</a> 
-				<a href="register.html"><span class="icon-edit"></span> Free Register </a> 
+
+				@if(Auth::user())
+				<a href={{route('profile.show')}}>
+					@if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+					 <img style='width:40px;height:40px; border-radius:10px' src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />                    
+				   @else
+						 Welcome  {{ Auth::user()->name }} 
+					@endif
+			</a>
+			<form method="POST" action="{{ route('logout') }}" style='display:inline'>
+			  @csrf
+			<button type='submit' style='border:none'><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+			</form>
+			@else
+				<a href="{{route('login')}}"><span class="icon-user"></span> Login</a> 
+				<a href="{{route('register')}}"><span class="icon-edit"></span> Free Register </a> 
+						@endif
 				<a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
 				<a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a>
 			</div>

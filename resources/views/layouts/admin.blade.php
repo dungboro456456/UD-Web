@@ -36,7 +36,20 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- Navbar Search -->
+     <li>
+      <a href={{route('profile.show')}}>
+        @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+         <img style='width:40px;height:40px; border-radius:10px' src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />                    
+       @else
+             Welcome  {{ Auth::user()->name }} 
+        @endif
+</a>
+<form method="POST" action="{{ route('logout') }}" style='display:inline'>
+  @csrf
+<button type='submit' style='border:none'><i class="fas fa-sign-out-alt"></i></button>
+</form>
+
+     </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>

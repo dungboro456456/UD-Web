@@ -17,16 +17,16 @@ use PharIo\Manifest\Author;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', [ProductController::class,'index']); 
+Route::get('/', [ProductController::class,'index'])->name('homepage'); 
 Route::get('/products', [ProductController::class,'index']); 
-Route::get('/products/{slug}', [ProductController::class,'showBySlug']); 
-Route::get('/admin/categories/trash',[AdminCategoryController::class,'trash'])->name('category.trash');
-Route::get('/admin/categories/restore/{id}',[AdminCategoryController::class,'restore']);
-Route::get('/admin/categories/remove/{id}',[AdminCategoryController::class,'remove']);
+Route::get('/products/{slug}', [ProductController::class,'showBySlug']);
 
-Route::resource('/admin/categories', AdminCategoryController::class);
-
-
+Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
+Route::get('categories/trash',[AdminCategoryController::class,'trash'])->name('category.trash');
+Route::get('categories/restore/{id}',[AdminCategoryController::class,'restore']);
+Route::get('categories/remove/{id}',[AdminCategoryController::class,'remove']);
+Route::resource('categories', AdminCategoryController::class);
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
