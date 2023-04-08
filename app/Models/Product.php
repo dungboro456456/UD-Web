@@ -9,16 +9,16 @@ class Product extends Model
 {
     use HasFactory;
 
-    //use SoftDeletes;
-    // protected $fillable=[
-    //     'cat_Name',
-    //     'slug',
-    //     'parentId',
-    //     'type',
-    //     'author',
-    //     'status',
-    //     'create_at',
-    //     'update_at',
-    //     'delete_at'
-    // ];
+    use SoftDeletes;
+    protected $fillable=[
+        'cat_Name',
+        'slug',
+        'parentId',
+        'type',
+        'author',
+        'status',
+        'create_at',
+        'update_at',
+        'delete_at'
+    ];
 }

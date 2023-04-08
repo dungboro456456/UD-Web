@@ -18,7 +18,7 @@
 				<div class="caption cntr">
 					<p>{{$product->product_name}}</p>
 					<p><strong>{{$product->price}}</strong></p>
-					<h4><a class="shopBtn" href="#" title="add to cart"> Add to cart </a></h4>
+					<h4><a class="shopBtn" href="/add-cart/{{$product->id}}" title="add to cart"> Add to cart </a></h4>
 					<div class="actionList">
 						<a class="pull-left" href="#">Add to Wish List </a> 
 						<a class="pull-left" href="#"> Add to Compare </a>
